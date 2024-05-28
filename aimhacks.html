@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aimhacks</title>
+  <link rel="icon" href="https://1.bp.blogspot.com/-NGxP8i-BAVg/Xb4H8QbGKlI/AAAAAAAAFLk/XStv9Kjdemo27yV6wQ5oEoiHyVVaBqdXACLcBGAsYHQ/s1600/Weaponary_-_Flat_-_012_-_Crosshair-128.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+  <style>
+    .aimhacks {
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script class="aimhacks">
+    var canvas = document.getElementById("canvas");
+    var processing = new Processing(canvas, function(processing) {
+        processing.size(600, 600);
+        processing.background(0xFFF);
+
+        var mouseIsPressed = false;
+        processing.mousePressed = function () { mouseIsPressed = true; };
+        processing.mouseReleased = function () { mouseIsPressed = false; };
+
+        var keyIsPressed = false;
+        processing.keyPressed = function () { keyIsPressed = true; };
+        processing.keyReleased = function () { keyIsPressed = false; };
+
+        function getImage(s) {
+            var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+            processing.externals.sketch.imageCache.add(url);
+            return processing.loadImage(url);
+        }
+
+        // use degrees rather than radians in rotate function
+        var rotateFn = processing.rotate;
+        processing.rotate = function (angle) {
+            rotateFn(processing.radians(angle));
+        };
+
+        with (processing) {
+            //Scene Variable
+            var currentScene = 0;
+
+            // Timer Variables
+            var timer1 = 12;
+            var timer2 = 11;
+            var timer3 = 10;
+            var timer4 = 1;
+            var timer5 = 1;
+            var timer6 = 1;
+            var timer7 = 1;
+            var timer8 = 1;
+            var timer9 = 1;
+
+            //Final Screen Level Timers
+            var flickshottotalTimer1 = 0;
+            var totalNormal = (12 - timer1) + (11- timer2) + (10- timer3);
+
+            //3D Text Variable
+            var textX = 289;
+
+            //Flickshot Level
+            var flickshotC = 0;
+
+            //Flickshot Level Timer Positions
+            var timerX = 538;
+            var timer1x = 538;
+            var timer2x = 538;
+            var timer3x = 538;
+            var timer4x = 538;
+            var timer5x = 538;
+
+            // Variables to make the sqaures dissapear
+            var x11 = 156;
+            var x12 = 512;
+            var x21 = 322;
+            var x22 = 170;
+            var x23 = 278;
+            var x24 = 65;
+            var x25 = 247;
+            var x26 = 327;
+            var x27 = 519;
+            var x28 = 101;
+            var x29 = 410;
+            var x41 = 371;
+            var x42 = 231;
+            var x43 = 488;
+            var x44 = 401;
+            var x45 = 285;
+            var x46 = 111;
+            var x47 = 489;
+            var x48 = 490;
+            var x49 = 400;
+            var x410 = 306;
+            var x411 = 147;
+            var x51 = 139;
+            var x52 = 350;
+            var x53 = 222;
+            var x54 = 430;
+            var x55 = 89;
+            var x56 = 195;
+            var x57 = 271;
+            var x58 = 533;
+            var x59 = 510;
+            var x510 = 365;
+            var x511 = 52;
+            var x512 = 34;
+            var x513 = 218;
+            var x61 = 82;
+            var x62 = 181;
+            var x63 = 287;
+            var x64 = 468;
+            var x65 = 93;
+            var x66 = 252;
+            var x67 = 353;
+            var x68 = 484;
+            var x69 = 36;
+            var x610 = 212;
+            var x611 = 428;
+            var x612 = 444;
+            var x613 = 61;
+            var x613 = 287;
+            var x614 = 289;
+            var x81 = 70;
+            var x82 = 537;
+            var x83 = 48;
+            var x84 = 502;
+            var x85 = 143;
+            var x86 = 508;
+
+            //Scene 1 (Title Screen)
+            var drawScene1 = function() {
+                //Setting the coresspeonding scene number with draw scene function
+                currentScene = 1;
+                //Setting the color for the buttons and background
+                background(0, 0, 0);
+                fill(255, 0, 0);
+                textSize(40);
+                stroke(255, 255, 255);
+                fill(255, 0, 0);
+                stroke(255, 0, 0)
+                strokeWeight(3)
+                line(0, 398, 800, 398)
+                //Buttons and text for buttons
+                for(var i = 0; i < 8; i++){
+                    pushMatrix();
+                    scale(1.1, 1);
+                    if(i === 7){
+                    fill(255, 0, 0);    
+                    } else {
+                        fill(87, 10, 10);
+                    }
+                    textSize(90);
+                    textAlign(CENTER);
+                    text("Aimhacks", textX -21, 152 - i);
+                    popMatrix();
+                }
+                textSize(20);
+                text("Click to Start", 286, 298);
+                noFill();
+                text("Click here for instructions", 294, 356);
+                noFill();
+                noFill();
+                text("Click to Start Flick Shots", 301, 456);
+                noFill();
+                text("Click here for Flick Shot Instructions", 297, 501);
+                noFill();
+
+                textSize(15);
+                fill(255, 255, 255);
+                text ("Created by Arjun Korrakuti, Arin Barman, Michael Samrah, and Arnav Sinha", 300, 577);
+            };
+
+            //Scene 2 (Level 1)
+            var drawScene2 = function() {
+                //Setting the curent scene with the corresponding function
+                currentScene = 2;
+                //Setting color for background
+                background(0, 0, 0);
+                //Sqaures you have to hit and the borders and colors for the sqaures
+                stroke(245, 245, 245);
+                fill(255, 0, 0);
+                rect(x25, 323, 30, 30);
+                rect(x23, 247, 30, 30);
+                rect(x21, 74, 30, 30);
+                rect(x29, 452, 30, 30);
+                rect(x28, 488, 30, 30);
+                rect(x27, 303, 30, 30);
+                rect(x26, 340, 30, 30);
+                rect(x24, 315, 30, 30);
+                rect(x22, 110, 30, 30);
+                //Name of the level and border under the name
+                textSize(59);
+                text(".", 513, 24);
+                text("Level 1", 205, 53);
+                stroke(222, 22, 22);
+                strokeWeight(4);
+                line(1, 67, 599, 69);
+                //Timer and automation for the next level
+                stroke(255, 0, 0);
+                if (timer1 > 9.99) {
+                    text((timer1).toFixed(2), 513, 54);
+                } else {
+                    text("0" + (timer1).toFixed(2), 513, 54);
+                }
+                if (x29 === 410 || x21 === 322 || x22 === 170 || x23 === 278 ||  x24 === 65 ||  x25 === 247 ||  x26 === 327 ||  x27         === 519 ||  x28 === 101) {
+                    timer1-=0.020;
+                } else {
+                        if (currentScene === 2 ) {
+                            currentScene = 4;
+                        }
+                }
+                if (timer1 < 0) { 
+                    drawScene11();
+                    timer1 = 15;
+                    x21 = 322;
+                    x22 = 170;
+                    x23 = 278;
+                    x24 = 65;
+                    x25 = 247;
+                    x26 = 327;
+                    x27 = 519;
+                    x28 = 101;
+                    x29 = 410;
+                }
+            };
+
+            //Scene 3 (Instructions)
+            var drawScene3 = function() {
+            //Setting the corresponding scene with function
+            currentScene = 3;
+            //Setting text size and background color
+            background(0, 0, 0);
+            fill(255, 0, 0);
+            //Actual text for instructions
+            textSize(70);
+            for(var i = 0; i < 8; i++){
+                pushMatrix();
+                scale(1.1, 1);
+            if(i === 7){
+                fill(255, 0, 0);    
+            } else {
+                fill(87, 10, 10);
+            }
+            textSize(90);
+            textAlign(CENTER);
+            text("Instructions", textX -18, 99 - i);
+            popMatrix();
+            }
+            fill(255, 0, 0);
+            textSize(32);
+            text("When you click start on the home page you will see boxes all over the screen and a timer in the top right of the screen. You have to click on all of the boxes before the timer ends or you will have to restart. Once you click on all the boxes, you will automatically move up to the next level, you repeat the previous process until you complete all the levels at which point your overall time is displayed.", 4, 119, 595, 589);
+            stroke(255, 0, 0);
+            strokeWeight(4);
+            line(655, 110, -117, 109);
+            // Back Button
+            stroke(255, 255, 255);
+            rect(497,556,82,33);
+            fill(0, 0, 0);
+            text("Back", 538,584);
+            };
+
+            // Scene 4 (Level 2)
+            var drawScene4 = function() {
+                //Background for this Scene
+                background(0, 0, 0);
+
+                //Sqaures you have to hit and the colors for them
+                stroke(245, 245, 245);
+                fill(255, 0, 0);
+                rect(x42,132,30,30);
+                rect(x45,225,30,30);
+                rect(x41,80,30,30);
+                rect(x410,338,30,30);
+                rect(x411,379,30,30);
+                rect(x44,168,30,30);
+                rect(x49,346,30,30);
+                rect(x46,273,30,30);
+                rect(x48,382,30,30);
+                rect(x47,272,30,30);
+                rect(x43,140,30,30);
+                
+                //Level 2 Name and the line underneath it
+                textSize(60);
+                text("Level 2",191,53);
+                stroke(222, 22, 22);
+                strokeWeight(4);
+                line(4, 67, 600, 69);
+                // Timer and automation for next level
+                text(".", 513, 24);
+                if (timer2 > 9.99) {
+                    text((timer2).toFixed(2), 513, 51);
+                } else {
+                    text( "0" + (timer2).toFixed(2), 513, 51);
+                }
+                
+                if (x48 === 490 || x41 === 371|| x42 === 231 ||x43 === 48||x44         === 401 ||x45 === 285 ||x46 === 111 ||x47 === 489 || x49          === 400||x410 === 306 ||x411 === 147 ) {
+                    timer2-=0.020;
+                } else {
+                    if (currentScene === 4 ) {
+                        currentScene = 5;
+                }
+            }
+                if (timer2 < 0) { 
+                    drawScene11();
+                    timer2 = 13;
+                    x41 = 371;
+                    x42 = 231;
+                    x43 = 488;
+                    x44 = 401;
+                    x45 = 285;
+                    x46 = 111;
+                    x47 = 489;
+                    x48 = 490;
+                    x49 = 400;
+                    x410 = 306;
+                    x411 = 147;
+                }
+            };
+
+            // Scene 5 (Level 3)
+            var drawScene5 = function() {
+                // Background for this scene
+                background(0, 0, 0);
+            
+                // Sqaures you have to hit and the colors for them
+                stroke(245, 245, 245);
+                fill(255, 0, 0);
+                
+                // FOR DEV ONLY (Not acurrate variable of position in game (Under this))
+                rect(x51,118,30,30);
+                rect(x52,149,30,30);
+                rect(x53,146,30,30);
+                rect(x54,259,30,30);
+                rect(x55,229,30,30);
+                rect(x56,349,30,30);
+                rect(x57,232,30,30);
+                rect(x58,360,30,30);
+                rect(x59,146,30,30);
+                rect(x510,343,30,30);
+                rect(x511,362,30,30);
+                rect(x512,102,30,30);
+                rect(x513,467,30,30);
+                
+                // Level 3 Name and the line under it
+                textSize(60);
+                text("Level 3",191,53);
+                textFont(77,60);
+                stroke(242, 29, 29);
+                strokeWeight(4);
+                line(4, 67, 600, 69);
+                text(".", 523, 24);
+                if (timer3 > 9.99) {
+                    text((timer3).toFixed(2), 523, 52);
+                } else {
+                    text("0" + (timer3).toFixed(2), 523, 52);
+                }
+                if (x513 === 218 || x51 === 139|| x52 === 350 ||x53 ===222||x54 === 430 ||x55 === 89 ||x56 === 195 ||x57 === 271 || x58           === 533||x59 === 510 ||x510 === 365 ||x511 === 52 ||x512          === 34 ) {
+                    timer3-=0.020;
+                } else { 
+                    if (currentScene === 5 ) {
+                        textSize(58);
+                        text("You Won!", 300,300);
+                        textSize(27);
+                        totalNormal = (12 - timer1) + (11- timer2) + (10- timer3);
+                        text("You took " + (totalNormal).toFixed(2) + " seconds to finish all 3 levels", 306, 363);
+                    }
+                }
+                if (timer3 < 0) {
+                    drawScene11();
+                    timer3 = 10;
+                    x51 = 139;
+                    x52 = 350;
+                    x53 = 222;
+                    x54 = 430;
+                    x55 = 89;
+                    x56 = 195;
+                    x57 = 271;
+                    x58 = 533;
+                    x59 = 510;
+                    x510 = 365;
+                    x511 = 52;
+                    x512 = 34;
+                    x513 = 218;
+                }
+            };
+
+            // Scene 6 (Level 4)
+            var drawScene6 = function() {
+                currentScene = 7;
+                //Background for this level
+                background(0, 0, 0);
+                
+                //Sqaures you have to hit and the colors for them
+                stroke(245, 245, 245);
+                fill(255, 0, 0);
+                rect(x61,91,30,30);
+                rect(x62,135,30,30);
+                rect(x63,137,30,30);
+                rect(x64,149,30,30);
+                rect(x65,217,30,30);
+                rect(x66,232,30,30);    
+                rect(x67,240,30,30);
+                rect(x68,306,30,30);
+                rect(x69,318,30,30);
+                rect(x610,354,30,30);
+                rect(x611,433,30,30);
+                rect(x612,231,30,30);
+                rect(x613,451,30,30);
+                rect(x614,522,30,30);
+                
+                //The name for this level and the line under it
+                textSize(60);
+                text("Level 4",191,53);
+                textFont(77,60);
+                stroke(242 , 29, 29);
+                strokeWeight(4);
+                line(4, 67, 600, 69);
+            };
+
+            //Flickshot Level 1
+            var drawScene8 = function() {
+                background(0, 0, 0);
+                textSize(59);
+                fill(255, 0, 0);
+                text("Level 1",185,50);
+                strokeWeight(1.5);
+                stroke(255, 0, 0);
+                line(-7, 61, 625, 61);
+                noFill();
+                rect(232, 258, 117, 99);
+                textSize(37);
+                text("Flick Shots",382,48);
+                fill(255, 0, 0);
+                textSize(23);
+                text("Timer:", 538, 24);
+                text((timer4).toFixed(2), timerX, 53);
+                if (flickshotC === 1) {
+                    timer4-=0.020;
+                } 
+                if (timer4 < 0) {
+                    currentScene = 1;
+                    timer4 = 1;
+                    flickshotC = 0;
+                }
+                if (flickshotC === 2) {
+                    timerX = -2000;
+                }
+                if (flickshotC === 3) {
+                    text((timer5).toFixed(2), 538, 53);
+                }
+                if (flickshotC === 3) {
+                    timer5 -=0.020;
+                }
+                if (timer5 < 0) {
+                    currentScene = 1;
+                    timer5 = 1;
+                    flickshotC = 0;
+                }
+                if (flickshotC === 4) {
+                    timer1x = -2000;
+                }
+                if (flickshotC === 5) {
+                    text((timer6).toFixed(2), 538, 53);
+                }
+                if (flickshotC === 5) {
+                    timer6 -=0.020;
+                }
+                if (timer6 < 0) {
+                    currentScene = 1;
+                    timer6 = 1;
+                    flickshotC = 0;
+                }
+                if (flickshotC === 6) {
+                    timer2x = -2000;
+                }
+                if (flickshotC === 7) {
+                    text((timer7).toFixed(2), 538, 53);
+                }
+                if (flickshotC === 7) {
+                    timer7 -=0.020;
+                }
+                if (timer7 < 0) {
+                    currentScene = 1;
+                    timer7 = 1;
+                    flickshotC = 0;
+                }
+                if (flickshotC === 8) {
+                    timer3x = -2000;
+                }
+                if (flickshotC === 9) {
+                    text((timer8).toFixed(2), 538, 53);
+                }
+                if (flickshotC === 9) {
+                    timer8 -=0.020;
+                }
+                if (timer8 < 0) {
+                    currentScene = 1;
+                    timer8 = 1;
+                    flickshotC = 0;
+                }
+                if (flickshotC === 10) {
+                    timer4x = -2000;
+                }
+                if (flickshotC === 11) {
+                    text((timer9).toFixed(2), 538, 53);
+                }
+                if (flickshotC === 11) {
+                    timer9 -=0.020;
+                }
+                if (timer9 < 0) {
+                    currentScene = 1;
+                    timer9 = 1;
+                    flickshotC = 0;
+                }
+                if (flickshotC === 12) {
+                    timer5x = -2000;
+                }
+                if (mouseX > 232 && mouseX < 349 && mouseY > 258 && mouseY <  335 && mouseIsPressed && flickshotC === 0) {        
+                    flickshotC = 1;
+                }
+                if (flickshotC === 1) {
+                    rect(x81,88,30,30);
+                }
+                if (mouseX > 232 && mouseX < 349 && mouseY > 258 && mouseY <  335 && mouseIsPressed && flickshotC === 2) {
+                    flickshotC = 3;
+                }
+                if (flickshotC === 3) {
+                    rect(x82,139,30,30);
+                }
+                if (mouseX > 232 && mouseX < 349 && mouseY > 258 && mouseY <  335 && mouseIsPressed && flickshotC === 4) {
+                    flickshotC = 5;
+                }
+                if (flickshotC === 5) {
+                    rect(x83,359,30,30);
+                }
+                if (mouseX > 232 && mouseX < 349 && mouseY > 258 && mouseY <  335 && mouseIsPressed && flickshotC === 6) {
+                    flickshotC = 7;
+                }
+                if (flickshotC === 7) {
+                    rect(x84,369,30,30);
+                }
+                if (mouseX > 232 && mouseX < 349 && mouseY > 258 && mouseY <  335 && mouseIsPressed && flickshotC === 8) {
+                    flickshotC = 9;
+                }
+                if (flickshotC === 9) {
+                    rect(x85,514,30,30);
+                }
+                if (mouseX >232 && mouseX < 349 && mouseY > 258 && mouseY < 335 && mouseIsPressed && flickshotC === 10) {
+                    flickshotC = 11;
+                }
+                if (flickshotC === 11) {
+                    rect(x86,551,30,30);
+                }
+                if (flickshotC === 12) {
+                    background(0, 0, 0);
+                    textSize(58);
+                    text("You Won!", 300, 300);
+                    textSize(25);
+                    text("Your Total Time for this level is:", 306, 367);
+                    text((flickshottotalTimer1.toFixed(2)) + " Seconds", 300, 428);
+                }
+                    
+                if (flickshotC === 1 || flickshotC === 2 || flickshotC === 3 || flickshotC === 4 || flickshotC === 5 || flickshotC === 6 || flickshotC === 7 || flickshotC === 8 || flickshotC === 9 || flickshotC === 10 || flickshotC === 11) {
+                    flickshottotalTimer1 += 0.020;
+                }
+                
+            };
+
+            //Flickhsot Instructions
+            var drawScene9 = function() {
+                background(0, 0, 0);
+                textSize(70);
+                    for(var i = 0; i < 8; i++){
+                        pushMatrix();
+                        scale(1.1, 1);
+                        if(i === 7){
+                        fill(255, 0, 0);    
+                        } else {
+                                fill(87, 10, 10);
+                        }
+                        textSize(90);
+                        textAlign(CENTER);
+                        text("Instructions", textX -18, 99 - i);
+                        popMatrix();
+                }
+                    fill(255, 0, 0);
+                    textSize(32);
+                    text("When you click start flich shots on the home page, you will see a black square, and once clicking it a one second timer will start. Once this timer starts you need to click the red square that shows up within the one second. Now repeat, and you're overall time will show up.", 4, 119, 595, 589);
+                    stroke(255, 0, 0);
+                    strokeWeight(4);
+                    line(655, 110, -117, 109);
+                    // Back Button
+                    stroke(255, 255, 255);
+                    rect(497,556,82,33);
+                    fill(0, 0, 0);
+                    text("Back", 538,584);
+            };
+
+            //Death Screen
+            var drawScene11 = function() {
+                currentScene = 11;
+                background(0, 0, 0);
+                textSize(70);
+                    for(var i = 0; i < 8; i++){
+                        pushMatrix();
+                        scale(1.1, 1);
+                        if(i === 7){
+                        fill(255, 0, 0);    
+                        } else {
+                            fill(87, 10, 10);
+                        }
+                        textSize(90);
+                        textAlign(CENTER);
+                        text("You failed!", textX -18, 99 - i);
+                        popMatrix();
+                }
+                fill(255, 0, 0);
+                textSize(32);
+                stroke(255, 0, 0);
+                strokeWeight(4);
+                // Back Button
+                stroke(255, 255, 255);
+                rect(497,556,82,33);
+                fill(0, 0, 0);
+                textSize(30)
+                text("Home", 538,584);
+            };
+
+            //Starting Scene Varibale Set
+            currentScene = 1;
+
+            /* MouseClicked Function to Cycle Throught The Screens and functions to make the sqaures dissapear and only for the flcikshot levels the timer stabalizer variable changing function */
+            mouseClicked = function() {
+                if (currentScene === 1 && mouseX < 371 && mouseX > 214 && mouseY < 310 && mouseY > 275){
+                    drawScene2();
+                }
+                if (currentScene === 3 && mouseX < 579 && mouseX > 497 && mouseY < 589 && mouseY > 556) {
+                    drawScene1();
+                }
+                if (currentScene === 9 && mouseX < 579 && mouseX > 497 && mouseY < 589 && mouseY > 556) {
+                    drawScene1();
+                }
+                if (currentScene === 7 && mouseX < 585 && mouseX > 503 && mouseY < 465 && mouseY > 432) {
+                    drawScene1();
+                }
+                if (currentScene === 10 && mouseX < 585 && mouseX > 503 && mouseY < 465 && mouseY > 432) {
+                    drawScene1();
+                }
+                if (currentScene === 1 && mouseX < 409 && mouseX > 178 && mouseY < 363 && mouseY > 333) {
+                    drawScene3();
+                }
+                if (currentScene === 1 && mouseX < 370 && mouseX > 230 && mouseY < 486 && mouseY > 442) {
+                    currentScene = 8;
+                    drawScene8();
+                }
+                if (currentScene === 1 && mouseX < 456 && mouseX > 136 && mouseY < 508 && mouseY > 478) {
+                    currentScene = 9;
+                    drawScene9();
+                }
+                if (currentScene === 11 && mouseX < 579 && mouseX > 497 && mouseY < 589 && mouseY > 556) {
+                    drawScene1();
+                }
+                if (mouseX > 150 && mouseX < 186 && mouseY >= 420 && mouseY < 452 && currentScene === 1) {
+                    x11 = -2000;
+                }
+                if (mouseX > 512 && mouseX < 542 && mouseY > 289 && mouseY < 319 && currentScene === 1) {
+                    x12 = -2000;
+                }
+                if (mouseX > 322 && mouseX < 352 && mouseY > 74 && mouseY < 104 && currentScene === 2) {
+                    x21 = -2000;
+                }
+                if (mouseX > 170 && mouseX < 200 && mouseY > 110 && mouseY < 140 && currentScene === 2) {
+                    x22 = -2000;
+                }
+                if (mouseX > 278 && mouseX < 308 && mouseY > 247 && mouseY < 277 && currentScene === 2) {
+                    x23 = -2000;
+                }
+                if (mouseX > 65 && mouseX < 95 && mouseY > 315 && mouseY < 345 && currentScene === 2) {
+                    x24 = -2000;
+                }
+                if (mouseX > 247 && mouseX < 277 && mouseY > 323 && mouseY < 353 && currentScene === 2) {
+                    x25 = -2000;
+                }
+                if (mouseX > 327 && mouseX < 357 && mouseY > 340 && mouseY < 370 && currentScene === 2) {
+                    x26 = -2000;
+                }
+                if (mouseX > 519 && mouseX < 549 && mouseY > 303 && mouseY < 333 && currentScene === 2) {
+                    x27 = -2000;
+                }
+                if (mouseX > 101 && mouseX < 131 && mouseY > 488 && mouseY < 508 && currentScene === 2) {
+                    x28 = -2000;
+                }
+                if (mouseX > 410 && mouseX < 430 && mouseY > 452 && mouseY < 482 && currentScene === 2) {
+                    x29 = -2000;
+                }
+                if (mouseX > 371 && mouseX < 401 && mouseY > 80 && mouseY < 110 && currentScene === 4) {
+                    x41 = -2000;
+                }
+                if (mouseX > 231 && mouseX < 261 && mouseY > 132 && mouseY < 162 && currentScene === 4) {
+                    x42 = -2000;
+                }
+                if (mouseX > 488 && mouseX < 518 && mouseY > 140 && mouseY < 170 && currentScene === 4) {
+                    x43 = -2000;
+                }
+                if (mouseX > 401 && mouseX < 431 && mouseY > 168 && mouseY < 198 && currentScene === 4) {
+                    x44 = -2000;
+                }
+                if (mouseX > 285 && mouseX < 315 && mouseY > 225 && mouseY < 255 && currentScene === 4) {
+                    x45 = -2000;
+                }
+                if (mouseX > 111 && mouseX < 141 && mouseY > 273 && mouseY < 303 && currentScene === 4) {
+                    x46 = -2000;
+                }
+                if (mouseX > 489 && mouseX < 519 && mouseY > 272 && mouseY < 302 && currentScene === 4) {
+                    x47 = -2000;
+                }
+                if (mouseX > 490 && mouseX < 520 && mouseY > 382 && mouseY < 412 && currentScene === 4) {
+                    x48 = -2000;
+                }
+                if (mouseX > 400 && mouseX < 430 && mouseY > 346 && mouseY < 376 && currentScene === 4) {
+                    x49 = -2000;
+                }
+                if (mouseX > 306 && mouseX < 336 && mouseY > 338 && mouseY < 368 && currentScene === 4) {
+                    x410 = -2000;
+                }
+                if (mouseX > 147 && mouseX < 177 && mouseY > 379 && mouseY < 409 && currentScene === 4) {
+                    x411 = -2000;
+                }
+                if (mouseX > 139 && mouseX < 169 && mouseY > 118 && mouseY < 148 && currentScene === 5) {
+                    x51 = -2000;
+                }
+                if (mouseX > 34 && mouseX < 64 && mouseY > 102 && mouseY < 132 && currentScene === 5) {
+                    x512 = -2000;
+                }
+                if (mouseX > 222 && mouseX < 252 && mouseY > 146 && mouseY < 176 && currentScene === 5) {
+                    x53 = -2000;
+                }
+                if (mouseX > 350 && mouseX < 380 && mouseY > 149 && mouseY < 179 && currentScene === 5) {
+                    x52 = -2000;
+                }
+                if (mouseX > 510 && mouseX < 540 && mouseY > 146 && mouseY < 176 && currentScene === 5) {
+                    x59 = -2000;
+                }
+                if (mouseX > 89 && mouseX < 119 && mouseY > 229 && mouseY < 259 && currentScene === 5) {
+                    x55 = -2000;
+                }
+                if (mouseX > 271 && mouseX < 301 && mouseY > 232 && mouseY < 262 && currentScene === 5) {
+                    x57 = -2000;
+                }
+                if (mouseX > 430 && mouseX < 460 && mouseY > 259 && mouseY < 289 && currentScene === 5) {
+                    x54 = -2000;
+                }
+                if (mouseX > 52 && mouseX < 82 && mouseY > 362 && mouseX < 392 && currentScene === 5) {
+                    x511 = -2000;
+                }
+                if (mouseX > 195 && mouseX < 225 && mouseY > 349 && mouseY < 379 && currentScene === 5) {
+                    x56 = -2000;
+                }
+                if (mouseX > 365 && mouseX < 395 && mouseY > 343 && mouseY < 373 && currentScene === 5) {
+                    x510 = -2000;
+                }
+                if (mouseX > 533 && mouseX < 563 && mouseY > 360 && mouseY < 390 && currentScene === 5) {
+                    x58 = -2000;
+                }
+                if (mouseX > 218 && mouseX < 248 && mouseY > 467 && mouseY < 497 && currentScene === 5) {
+                    x513 = -2000;
+                }
+                if (mouseX > 70 && mouseX < 100 && mouseY > 88 && mouseY < 118 && currentScene === 8) {
+                    x81 = -2000;
+                    flickshotC = 2;
+                }
+                if (mouseX > 537 && mouseX < 567 && mouseY > 139 && mouseY < 169 & currentScene === 8) {
+                    x82= -2000;
+                    flickshotC = 4;
+                }
+                if (mouseX > 48 && mouseX < 78 && mouseY > 359 && mouseY < 389 && currentScene === 8) {
+                    x83 = -2000;
+                    flickshotC = 6;
+                }
+                if (mouseX > 502 && mouseX < 532 && mouseY > 369 && mouseY < 399 && currentScene === 8) {
+                    x84 = -2000;
+                    flickshotC = 8;
+                }
+                if (mouseX > 143 && mouseX < 173 && mouseY > 514 && mouseY < 544 && currentScene === 8) {
+                    x85 = -2000;
+                    flickshotC = 10;
+                }
+                if (mouseX > 508 && mouseX < 538 && mouseY > 551 && mouseY < 581 && currentScene === 8) {
+                    x86 = -2000;
+                    flickshotC = 12;
+                }
+            };
+
+            // Function to display the scenes
+            draw = function() {
+                if (currentScene === 1) {
+                    drawScene1(); 
+                } else if (currentScene === 2) {
+                    drawScene2();
+                } else if (currentScene === 3) {
+                    drawScene3();
+                } else if (currentScene === 4) {
+                    drawScene4();
+                } else if (currentScene === 5) {
+                    drawScene5();
+                } else if (currentScene === 6) {
+                    drawScene6();
+                } else if (currentScene === 7) {
+                    drawScene7();
+                } else if (currentScene === 8) {
+                    drawScene8();
+                } else if (currentScene === 12) {
+                    drawScene11();
+                } // Mouse Crosshair
+                if (mouseX > 0 && mouseX < 600 && mouseY > 0 && mouseY < 600) {
+                    cursor(CROSS);
+                }
+            };
+        }
+        if (typeof draw !== 'undefined') processing.draw = draw;
+    });
+  </script>
+</body>
+</html>
